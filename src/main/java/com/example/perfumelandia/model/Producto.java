@@ -6,29 +6,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Table(name = "inventario")
+@Table(name = "producto")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 
 
-public class Inventario {
+public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = true, length = 10, nullable = false)
-    private String codigo;
+    @Column(nullable = false)
+    private String detalle;
 
     @Column(nullable = false)
-    private String descripcion;
+    private Integer precioNeto;
 
     @Column(nullable = false)
-    private String marca;
+    private Integer Iva;
 
     @Column(nullable = false)
-    private Integer cantidad;
-
-
+    private Integer precioTotal;
 }
