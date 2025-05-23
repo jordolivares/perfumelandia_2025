@@ -21,6 +21,15 @@ public class PedidoService {
             return pedidoRepository.save(pedido);
         }
         //* Agregar return?
+
+    public Pedido crearPedido(Pedido pedido) {
+        return pedidoRepository.save(pedido);
     }
 
-}
+
+
+    }
+
+
+
+
