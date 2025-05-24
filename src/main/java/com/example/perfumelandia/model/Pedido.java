@@ -15,14 +15,18 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //* revisar esta parte
-    private Integer id;
+    private Integer id; // Código producto
 
-    private String Usuario;
+    @Column(unique = true, nullable = false)
+    private String Usuario; // Cliente
 
-    private List<Producto> productos;
+    @Column(unique = true, nullable = false)
+    private List<Producto> productos; // Productos a comprar
 
-    private Integer cantidad;
+    @Column(unique = true, nullable = false)
+    private Integer cantidad; // Cantidad de productos
 
-    private Integer precioTotal;
+    @Column(unique = true, nullable = false)
+    private Integer precioTotal; // Precio total del producto
 
 }

@@ -1,20 +1,20 @@
 package com.example.perfumelandia.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import com.example.perfumelandia.model.Pedido;
 import com.example.perfumelandia.service.PedidoService;
 import org.springframework.http.ResponseEntity;
 
+
+
 @RestController
 @RequestMapping("/api/pedidos")
-public class PedidoController {
+public class PedidoControllerNicolas {
 
     private final PedidoService pedidoService;
 
-    public PedidoController(PedidoService pedidoService) {
+    public PedidoControllerNicolas(PedidoService pedidoService) {
         this.pedidoService = pedidoService;
     }
 
@@ -25,10 +25,21 @@ public class PedidoController {
         return ResponseEntity.ok(nuevoPedido);
     }
 
-    @PutMapping("/{Id}")
-    public ResponseEntity<Pedido> actualizarPedido(@PathVariable int Id, @RequestBody Pedido pedido) {
-        Pedido pedidoActualizado = pedidoService.actualizarPedido(Id, pedido);
+    @PutMapping("/{id}")
+    public ResponseEntity<Pedido> actualizarPedido(@PathVariable int id, @RequestBody Pedido pedido) {
+        Pedido pedidoActualizado = pedidoService.actualizarPedido(id, pedido);
         return pedidoActualizado !=null ? ResponseEntity.ok(pedidoActualizado) : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    Public ResponseEntity<String> eliminarPedido(@PathVariable Integer id) {
+
+        Boolean eliminar = pedidoService.eliminarPedido(id);
+        IF (eliminado) {
+            return ResponseEntity.ok("Pedido eliminado con exito");
+        } else {
+            return ResponseEntity.status(404).body("Pedido no encontrado");
+        }
     }
 
 }
