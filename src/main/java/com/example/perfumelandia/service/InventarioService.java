@@ -23,16 +23,24 @@ public class InventarioService {
     }
 
     public Producto agregarProductoAInventario(Long inventarioId, Producto producto) {
-        Inventario inventario = inventarioRepository.findById(inventarioId).orElseThrow(() -> new RuntimeException("Inventario no encontrado"));
+        Inventario inventario = inventarioRepository.findById(inventarioId);
         producto.setInventario(inventario);
         return productoRepository.save(producto);
     }
 
     public Inventario obtenerInventarioConProductos(Long id) {
-        return inventarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Inventario no encontrado"));
+        return inventarioRepository.findById(id);
     }
 
     public List<Inventario> listarInventarios() {
         return inventarioRepository.findAll();
+    }
+
+    public Inventario eliminarInventario(Long id) {
+        return inventarioRepository.findById(id);
+    }
+
+    public Inventario actualizarInventario(Inventario inventario) {
+        return inventarioRepository.save(inventario);
     }
 }
