@@ -16,17 +16,21 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;  // Identificador único del producto.
+
+    @Column(unique = true, nullable = false)
+    private String codigo;  // Código único del producto.
 
     @Column(nullable = false)
-    private String detalle;
+    private String nombre;  // Nombre del producto.
 
     @Column(nullable = false)
-    private Integer precioNeto;
+    private String marca;  // Categoría del producto (e.g., perfumes, cosméticos, etc.)
 
     @Column(nullable = false)
-    private Integer Iva;
+    private Integer precio;  // Precio del producto.
 
-    @Column(nullable = false)
-    private Integer precioTotal;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_inventario",  nullable = false)
+    private Inventario inventario;
 }
