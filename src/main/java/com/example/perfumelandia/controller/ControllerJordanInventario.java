@@ -52,6 +52,19 @@ public class ControllerJordanInventario {
         return ResponseEntity.ok(inventarioService.agregarProductoAInventario(id_inventario, producto));
     }
 
+    @DeleteMapping("/inventario/{id}")
+    public void eliminarInventario(@PathVariable Long id) {
+        Inventario inventario = inventarioService.eliminarInventario(id);
+    }
+
+
+    @PutMapping("/inventario/{id}")
+    public ResponseEntity<Inventario> actualizarInventario(Inventario inventario) {
+        return ResponseEntity.ok(inventarioService.actualizarInventario(inventario));
+    }
+
+
+
 
 
 
