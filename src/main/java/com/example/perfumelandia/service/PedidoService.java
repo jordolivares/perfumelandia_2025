@@ -30,6 +30,10 @@ public class PedidoService {
         pedidoRepository.deleteById(id);
     }
 
+    public Pedido buscarPedido(Long id) {
+        return pedidoRepository.findById(id).orElse(null);
+    }
+
 }
 
 

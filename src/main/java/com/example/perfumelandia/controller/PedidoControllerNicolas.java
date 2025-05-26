@@ -37,4 +37,10 @@ public class PedidoControllerNicolas {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/buscarPedido/{id}")
+    public ResponseEntity<Pedido> buscarPedido(@PathVariable Long id) {
+        Pedido pedidoEncontrado = pedidoService.buscarPedido(id);
+        return pedidoEncontrado !=null ? ResponseEntity.ok(pedidoEncontrado) :  ResponseEntity.notFound().build();
+    }
+
 }
