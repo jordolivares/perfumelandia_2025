@@ -1,6 +1,6 @@
 package com.example.perfumelandia.dto.response;
 
-import com.example.perfumelandia.model.Producto;
+import  com.example.perfumelandia.model.Producto;
 import lombok.Data;
 
 @Data
