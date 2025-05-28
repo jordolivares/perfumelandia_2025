@@ -10,6 +10,8 @@ public class ProductoDTO {
     private String nombre;
     private String marca;
     private Integer precio;
+    private Integer cantidad;
+    private Long inventarioId;
 
     public ProductoDTO(Producto producto) {
         this.id = producto.getId();
