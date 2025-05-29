@@ -1,11 +1,13 @@
 package com.example.perfumelandia.repository;
 
 import com.example.perfumelandia.model.Inventario;
-import com.example.perfumelandia.dto.response.InventarioDTO;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 
 import java.util.List;
 
 
-public interface InventarioRepository {
+public interface InventarioRepository extends JpaRepository<Inventario, Long> {
 
-  }
+
+}

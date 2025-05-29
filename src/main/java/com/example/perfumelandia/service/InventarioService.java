@@ -11,15 +11,18 @@ import java.util.List;
 @Service
 public class InventarioService {
 
-    @Autowired
-    private InventarioRepository inventarioRepository;
+    private final InventarioRepository inventarioRepository;
 
+    @Autowired
+    public InventarioService(InventarioRepository inventarioRepository) {
+        this.inventarioRepository = inventarioRepository;
+    }
     public Inventario guardarInventario(Inventario inventario) {
         return inventarioRepository.save(inventario);
     }
 
-    public Inventario buscarInventario(Long id) {
-        return inventarioRepository.findById(id).orElse(null);
+    public Inventario buscarInventario(Long inventarioId) {
+        return inventarioRepository.findById(inventarioId).orElse(null);
     }
 
     public List<Inventario> listarInventarios() {
@@ -29,6 +32,7 @@ public class InventarioService {
     public void eliminarInventario(Long id) {
         inventarioRepository.deleteById(id);
     }
+
 
 }
 
