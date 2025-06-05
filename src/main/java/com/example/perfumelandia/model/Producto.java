@@ -1,16 +1,16 @@
 package com.example.perfumelandia.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Data
+@Entity
 @Table(name = "producto")
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-
 
 public class Producto {
 
@@ -30,7 +30,13 @@ public class Producto {
     @Column(nullable = false)
     private Integer precio;  // Precio del producto.
 
+    @Column(nullable = false)
+    private Integer cantidad;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id_inventario",  nullable = false)
+    @JoinColumn(name = "id_inventario", nullable = false)
+    @JsonBackReference
     private Inventario inventario;
+
 }
+
