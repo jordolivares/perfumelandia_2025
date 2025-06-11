@@ -28,7 +28,7 @@ public class Inventario {
     private String descripcion;  // Descripción del producto.
 
     @Column(nullable = false)
-    private Integer totalcantidadDisponible;  // Cantidad disponible en inventario. suma total producto
+    private Integer totalcantidadDisponible = 0;  // Cantidad disponible en inventario. suma total producto
 
     @Column(nullable = false)
     private Integer totalcantidadVendida;

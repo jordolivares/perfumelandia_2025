@@ -36,10 +36,18 @@ public class ProductoService {
         }
 
         Inventario inventario = inventarioRepository.findById(inventarioId).orElseThrow();
+
         producto.setInventario(inventario);
 
-        return productoRepository.save(producto);
 
+        Producto productoGuardado =  productoRepository.save(producto);
+
+        Integer cantidad = inventario.getTotalcantidadDisponible();
+        inventario.setTotalcantidadDisponible(cantidad + productoGuardado.getCantidad());
+
+        inventarioRepository.save(inventario);
+
+        return productoGuardado;
 
     }
     public Producto actualizarProducto(Long id, Producto productoNuevo) {
