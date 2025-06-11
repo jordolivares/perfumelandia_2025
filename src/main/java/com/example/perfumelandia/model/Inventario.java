@@ -36,10 +36,9 @@ public class Inventario {
     @Column(nullable = false)
     private Integer totalcantidadReservada;  // Cantidad reservada (por ejemplo, en pedidos).
 
-    @OneToMany(mappedBy = "inventario", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "inventario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Producto> productos;
-    //= new ArrayList<>();
+    private List<Producto> productos = new ArrayList<>();
 
 }
 

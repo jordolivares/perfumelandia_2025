@@ -33,7 +33,7 @@ public class Producto {
     @Column(nullable = false)
     private Integer cantidad;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "id_inventario", nullable = false)
     @JsonBackReference
     private Inventario inventario;
