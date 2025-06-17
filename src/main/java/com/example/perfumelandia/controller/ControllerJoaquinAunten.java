@@ -1,22 +1,26 @@
 package com.example.perfumelandia.controller;
-
-
-
 import com.example.perfumelandia.model.Rol;
 import com.example.perfumelandia.model.Usuario;
 import com.example.perfumelandia.service.RolService;
 import com.example.perfumelandia.service.UsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DecimalStyle;
+
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@Tag(name = "Auntenticacion", description = "Auntenticacion de usuario")
 public class ControllerJoaquinAunten {
-//j
+
     @Autowired
     private UsuarioService usuarioService;
 
@@ -39,6 +43,11 @@ public class ControllerJoaquinAunten {
     }
 
 
+    @Operation(summary = "Creacionn de usuario", description = "Crea un nuevo usuario")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Creacion exitosa"),
+            @ApiResponse(responseCode = "400", description = "Datos invalidos")
+    })
     @PostMapping("/register")
     public ResponseEntity<?> registrarUsuario(@RequestBody RegistroRequest request) {
         try {
@@ -56,6 +65,11 @@ public class ControllerJoaquinAunten {
     }
 
     // Login simple
+    @Operation(summary = "Iniciar sesion de usuario", description = "Inicia sesion mediante id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Login exitoso"),
+            @ApiResponse(responseCode = "400", description = "Datos invalidos")
+    })
     @PostMapping("/login")
     public ResponseEntity<?> loginUsuario(@RequestBody LoginRequest request) {
         try {
@@ -71,6 +85,7 @@ public class ControllerJoaquinAunten {
 
 
     @GetMapping("/perfil/{id}")
+    @Operation(summary = "Obtener usuario mediante ID", description = "Obtiene ID mediante ingreso de id")
     public ResponseEntity<?> obtenerPerfil(@PathVariable Long id) {
         try {
             Usuario usuario = usuarioService.findById(id);
@@ -82,7 +97,5 @@ public class ControllerJoaquinAunten {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al obtener perfil");
         }
     }
-
-
-
 }
+
