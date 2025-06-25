@@ -14,6 +14,6 @@ public class SwaggerConfig {
                 .info(new Info()
                 .title("Perfumelandia")
                 .version("1.0")
-                .description("Perfumelandia API"));
+                .description("Documento Perfumelandia API"));
     }
 }
