@@ -39,6 +39,5 @@ public class Inventario {
     @OneToMany(mappedBy = "inventario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Producto> productos = new ArrayList<>();
-
 }
 
