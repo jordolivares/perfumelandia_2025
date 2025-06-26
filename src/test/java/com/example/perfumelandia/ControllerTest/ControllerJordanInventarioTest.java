@@ -50,8 +50,6 @@ class ControllerJordanInventarioTest {
 
     }
 
-
-
     @Test
     public void obtenerTodosInventario() throws Exception {
         when(inventarioService.buscarInventarios()).thenReturn(List.of(inventario));

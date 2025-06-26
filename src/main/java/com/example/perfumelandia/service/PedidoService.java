@@ -34,6 +34,9 @@ public class    PedidoService {
         return pedidoRepository.findById(id).orElse(null);
     }
 
+    public Pedido guardarPedido(Pedido pedido)  {
+        return pedidoRepository.save(pedido);
+    }
 }
 
 
