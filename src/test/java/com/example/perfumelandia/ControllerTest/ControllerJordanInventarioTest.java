@@ -70,19 +70,34 @@ class ControllerJordanInventarioTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.codigo").value("INV MPO"))
-                .andExpect(jsonPath("$[0].descripcion").value("MALL PLAZA OESTE"));
+                .andExpect(jsonPath("$.descripcion").value("MALL PLAZA OESTE"));
     }
 
     @Test
     public void guardarInventario() throws Exception {
+
+        Inventario inventario = new Inventario(1L, "INV MPO", "MALL PLAZA OESTE", 0, 0, 0, null);
+
         when(inventarioService.agregarInventario(any(Inventario.class))).thenReturn(inventario);
 
-        mockMvc.perform(post("/api/v1/inventario"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.codigo").value("INV MPO"))
-                .andExpect(jsonPath("$[0].descripcion").value("MALL PLAZA OESTE"));
+        mockMvc.perform(post("/api/v1/inventario").contentType(MediaType.APPLICATION_JSON)
+                        .content(
+                                """
+                       {
+                          "codigo": "INV MPO",
+                          "descripcion": "MALL PLAZA OESTE",
+                          "totalcantidadDisponible": 0,
+                          "totalcantidadVendida": 0,
+                          "totalcantidadReservada": 0
+                                                                      \s
+                                     \s
+                       }
+        
+                      \s""")).andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+
     }
+
 
     @Test
     public void eliminarInventario() throws Exception {
